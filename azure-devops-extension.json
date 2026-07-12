@@ -1,0 +1,46 @@
+{
+  "manifestVersion": 1,
+  "id": "dependent-picklist",
+  "name": "Dependent Picklists for Azure Boards",
+  "version": "0.1.0",
+  "publisher": "your-publisher-id",
+  "description": "Configurable dependent picklists for Azure Boards work items.",
+  "public": false,
+  "categories": ["Azure Boards"],
+  "targets": [{ "id": "Microsoft.VisualStudio.Services" }],
+  "scopes": ["vso.work", "vso.extension.data", "vso.extension.data_write"],
+  "contributions": [
+    {
+      "id": "dependent-picklist-control",
+      "type": "ms.vss-work-web.work-item-form-control",
+      "targets": ["ms.vss-work-web.work-item-form"],
+      "properties": {
+        "name": "Dependent Picklist",
+        "uri": "dist/src/control/index.html",
+        "height": 80,
+        "inputs": [{
+          "id": "ruleId",
+          "description": "Configured dependency rule ID",
+          "type": "string",
+          "isRequired": true
+        }]
+      }
+    },
+    {
+      "id": "dependent-picklist-observer",
+      "type": "ms.vss-work-web.work-item-form-observer",
+      "targets": ["ms.vss-work-web.work-item-form"],
+      "properties": { "uri": "dist/src/observer/index.html" }
+    },
+    {
+      "id": "dependent-picklist-settings",
+      "type": "ms.vss-web.hub",
+      "targets": ["ms.vss-web.project-admin-hub-group"],
+      "properties": {
+        "name": "Dependent Picklists",
+        "uri": "dist/src/settings/index.html"
+      }
+    }
+  ],
+  "files": [{ "path": "dist", "addressable": true }]
+}
